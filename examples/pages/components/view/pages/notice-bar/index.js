@@ -6,17 +6,19 @@ Page({
    */
   data: {
     arr: ['我是通告栏一', '我是通告栏二', '我是通告栏三'],
-    showIcon: true,
+    showIcon: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+      this.setData({
+        content: '我是通告栏我是通告栏我是通告栏我是通告栏我是通告栏我是通告栏'
+      })
   },
 
-  onSwip(e){
+  onSwip(e) {
     console.log(e)
   },
 
@@ -28,7 +30,7 @@ Page({
 
   handleIcon() {
     this.setData({
-      showIcon:false
+      showIcon: false
     })
   }
 })

@@ -6,6 +6,7 @@ Component({
       type: String,
       value: 'still'
     },
+    content: String,
     // 轮播数组
     swipArr: Array,
     // 前置图标
@@ -66,17 +67,26 @@ Component({
     timer: null,
   },
 
+  observers: {
+    'content': function() {
+      this.judgeInit();
+    }
+  },
+
   detached() {
     this.destroyTimer();
   },
 
   ready() {
-    if (this.properties.type == 'roll' && this.properties.show) {
-      this.initAnimation();
-    }
+    this.judgeInit();
   },
 
   methods: {
+    judgeInit() {
+      if (this.properties.type == 'roll' && this.properties.show) {
+        this.initAnimation();
+      }
+    },
     initAnimation() {
       wx.createSelectorQuery().in(this).select('.l-noticebar-content-wrap').boundingClientRect((wrapRect) => {
         wx.createSelectorQuery().in(this).select('.l-noticebar-content').boundingClientRect((rect) => {
@@ -126,7 +136,7 @@ Component({
       }
     },
     handleTap() {
-      this.triggerEvent('lintap',{},{ bubbles: true, composed: true });
+      this.triggerEvent('lintap', {}, { bubbles: true, composed: true });
       this.setData({
         timer: null
       });
@@ -134,10 +144,10 @@ Component({
     onSwip(e) {
       this.triggerEvent('lintap', {
         ...e.currentTarget.dataset
-      },{ bubbles: true, composed: true });
+      }, { bubbles: true, composed: true });
     },
-    onIconTap(){
-      this.triggerEvent('linicontap',{},{ bubbles: true, composed: true });
+    onIconTap() {
+      this.triggerEvent('linicontap', {}, { bubbles: true, composed: true });
       this.setData({
         timer: null
       });

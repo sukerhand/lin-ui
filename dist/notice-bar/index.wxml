@@ -9,6 +9,7 @@
   </swiper>
   <view class="l-noticebar-content-wrap" wx:else>
     <view class="l-noticebar-content"  bindtap="handleTap" animation="{{ animationData }}">
+      {{content}}
       <slot></slot>
     </view>
   </view>
