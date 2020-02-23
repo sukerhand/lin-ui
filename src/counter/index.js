@@ -1,7 +1,7 @@
 import hover from '../behaviors/hover';
 
 Component({
-  behaviors:[hover],
+  behaviors: [hover],
   externalClasses: [
     'l-class',
     'l-symbol-class',
@@ -76,9 +76,9 @@ Component({
             count: this.data.result,
             type: 'blur'
           }, {
-            bubbles: true,
-            composed: true
-          });
+              bubbles: true,
+              composed: true
+            });
         });
       }, 50);
     },
@@ -134,9 +134,9 @@ Component({
         count: this.data.result,
         type: 'reduce'
       }, {
-        bubbles: true,
-        composed: true
-      });
+          bubbles: true,
+          composed: true
+        });
     },
 
     addTap() {
@@ -153,9 +153,9 @@ Component({
         count: this.data.result,
         type: 'add'
       }, {
-        bubbles: true,
-        composed: true
-      });
+          bubbles: true,
+          composed: true
+        });
     },
   }
 });

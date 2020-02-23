@@ -1,0 +1,1 @@
+export default Behavior({definitionFilter(e){const{properties:o}=e;Object.keys(o).forEach(e=>{const{options:t}=o[e];t&&(o[e].observer=function(o){-1===t.indexOf(o)&&console.error(`'${e}' must be in the [${t}]`)})})}});
