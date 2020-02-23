@@ -14,7 +14,7 @@ export default Behavior({
           if(options.indexOf(newValue) !== -1) {
             return;
           } else {
-            console.error(`'${name}' must be in the [${options}]`);
+            console.error(`${name}: ${newValue} must be in the [${options}]`);
           }
         };
       } else {
