@@ -1,0 +1,1 @@
+export default Behavior({definitionFilter(e){const{properties:r}=e;Object.keys(r).forEach(e=>{const{options:o,validator:i=null,required:t=!1,observer:n}=r[e];(o||i||t||n)&&(r[e].observer=function(r,s){n&&n(r,s),o&&!o.includes(r)&&console.error(`${e}: ${r} must be in the [${o}]`),i&&!i(r,s)&&console.error(`${e} validate failed`),t&&console.error(`${e} is required`)})})}});
