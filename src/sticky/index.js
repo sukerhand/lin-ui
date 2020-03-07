@@ -1,29 +1,29 @@
 Component({
-  externalClasses: ["l-class"],
+  externalClasses: ['l-class'],
 
   relations: {
-    "../sticky-item/index": {
-      type: "child",
+    '../sticky-item/index': {
+      type: 'child',
       linked() {
         this.checkSupportCssSticky().then((isSupportCssSticky) => {
           if (!isSupportCssSticky) {
-            this.updateStickyItemsSizeData()
+            this.updateStickyItemsSizeData();
           }
-        })
+        });
       },
       linkChanged() {
         this.checkSupportCssSticky().then((isSupportCssSticky) => {
           if (!isSupportCssSticky) {
-            this.updateStickyItemsSizeData()
+            this.updateStickyItemsSizeData();
           }
-        })
+        });
       },
       unlinked() {
         this.checkSupportCssSticky().then((isSupportCssSticky) => {
           if (!isSupportCssSticky) {
-            this.updateStickyItemsSizeData()
+            this.updateStickyItemsSizeData();
           }
-        })
+        });
       }
     }
   },
@@ -36,7 +36,7 @@ Component({
      */
     mode: {
       type: String,
-      value: "js"
+      value: 'js'
     },
 
     /**
@@ -49,12 +49,12 @@ Component({
     /**
      * 监听页面滚动，实时更新吸顶容器位置
      */
-    "scrollTop": function () {
+    'scrollTop': function () {
       this.checkSupportCssSticky().then((isSupportCssSticky) => {
         if (!isSupportCssSticky) {
-          this.updateStickyItemsPosition()
+          this.updateStickyItemsPosition();
         }
-      })
+      });
     }
   },
 
@@ -62,9 +62,9 @@ Component({
     attached() {
       this.checkSupportCssSticky().then((isSupportCssSticky) => {
         if (!isSupportCssSticky) {
-          this.initSticky()
+          this.initSticky();
         }
-      })
+      });
     }
   },
 
@@ -74,29 +74,29 @@ Component({
      * 创建wx.lin函数
      */
     initSticky() {
-      wx.lin = wx.lin || {}
+      wx.lin = wx.lin || {};
       wx.lin.flushSticky = () => {
-        this.updateStickyItemsSizeData()
-      }
+        this.updateStickyItemsSizeData();
+      };
       
       // 传入scrollTop的值的函数
       wx.lin.setScrollTop = (scrollTop) => {
-        this.data.scrollTop = scrollTop
+        this.data.scrollTop = scrollTop;
         this.checkSupportCssSticky().then((isSupportCssSticky) => {
           if (!isSupportCssSticky) {
-            this.updateStickyItemsPosition()
+            this.updateStickyItemsPosition();
           }
-        })
-      }
+        });
+      };
     },
 
     /**
      * 更新所有sticky-item组件的position属性
      */
     updateStickyItemsPosition() {
-      const stickyItemNodes = this.getStickyItemNodes()
+      const stickyItemNodes = this.getStickyItemNodes();
       for (let stickyItemNode of stickyItemNodes) {
-        stickyItemNode.updateStickyItemPosition(this.data.scrollTop)
+        stickyItemNode.updateStickyItemPosition(this.data.scrollTop);
       }
     },
 
@@ -104,10 +104,10 @@ Component({
      * 更新所有sticky-item组件的基础数据
      */
     updateStickyItemsSizeData() {
-      const stickyItemNodes = this.getStickyItemNodes()
+      const stickyItemNodes = this.getStickyItemNodes();
       stickyItemNodes.forEach((item, index) => {
-        item.updateStickyItemBaseData(index)
-      })
+        item.updateStickyItemBaseData(index);
+      });
     },
 
     /**
@@ -115,7 +115,7 @@ Component({
      * @return {Object} sticky-item组件集合
      */
     getStickyItemNodes() {
-      return this.getRelationNodes("../sticky-item/index")
+      return this.getRelationNodes('../sticky-item/index');
     },
 
     /**
@@ -124,25 +124,25 @@ Component({
        */
     checkSupportCssSticky() {
       return new Promise((resolve) => {
-        const stickyItemNodes = this.getStickyItemNodes()
+        const stickyItemNodes = this.getStickyItemNodes();
         if (stickyItemNodes.length == 0) {
-          resolve(false)
+          resolve(false);
         }
 
         // 根据position判断是否支持position:sticky
         wx
           .createSelectorQuery()
           .in(stickyItemNodes[0])
-          .select(".l-sticky-item-header")
-          .fields({ computedStyle: ["position"] })
+          .select('.l-sticky-item-header')
+          .fields({ computedStyle: ['position'] })
           .exec((res) => {
             if (res[0] === null) {
-              resolve(false)
+              resolve(false);
             } else {
-              resolve(res[0].position === "sticky")
+              resolve(res[0].position === 'sticky');
             }
-          })
-      })
+          });
+      });
     },
   }
-})
+});
