@@ -12,7 +12,7 @@ Component({
     'l-input-class',
     'l-cancel-class'
   ],
-  bahaviors: [validator],
+  behaviors: [validator],
   options: {
     multipleSlots: true // 在组件定义时的选项中启用多slot支持
   },
@@ -75,7 +75,7 @@ Component({
     },
     // 是否禁用
     disabled: Boolean,
-    // 占位文字的样式  
+    // 占位文字的样式
     placeholderStyle: String
   },
 
