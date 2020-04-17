@@ -60,7 +60,6 @@ Component({
       value: 'left',
       options: ['left', 'right']
     },
-    adress: String,
     // 获取焦点
     focus: Boolean,
     // 是否显示清除按钮
